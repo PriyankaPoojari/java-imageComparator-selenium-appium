@@ -15,6 +15,9 @@ public class AshotDriverComparison {
 		driver.findElement(By.id("signup")).click();
 		
 	}
+
+	//Error thrown with selenium 4.0.0 and Ashot 1.5.2
+
 	
 //	@Test
 //	public void loadAndSignUp() {
