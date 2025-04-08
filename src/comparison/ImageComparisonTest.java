@@ -33,7 +33,7 @@ public class ImageComparisonTest {
 		driver.get("https://thinking-tester-contact-list.herokuapp.com/");
 	}
 	
-	@Test
+	@Test(priority=1)
 	public void differentPage() throws IOException, InterruptedException {
 		// Code added to check compatibility with Selenium
 		String sourceFilePath = "resources/screenshots/v1/source.png";
@@ -57,7 +57,7 @@ public class ImageComparisonTest {
 	}
 	
 	
-	@Test
+	@Test(priority=2)
 	public void samePageDiffData() throws IOException, InterruptedException {
 		// Code added to check compatibility with Selenium
 		String sourceFilePath = "resources/screenshots/v1/source2.png";
@@ -81,7 +81,7 @@ public class ImageComparisonTest {
 		imageComp(sourceFilePath, targetFilePath,"samePageDiffData");
 	}
 	
-	@Test
+	@Test(priority=3)
 	public void differentDimensions() throws IOException, InterruptedException {
 		// Code added to check compatibility with Selenium
 		String sourceFilePath = "resources/screenshots/v1/source3.png";
@@ -107,7 +107,7 @@ public class ImageComparisonTest {
 	}
 	
 	
-	@Test
+	@Test(priority=4)
 	public void differentDimensions2() throws IOException, InterruptedException {
 		// Code added to check compatibility with Selenium
 		String sourceFilePath = "resources/screenshots/v1/Source-Samsung.png";
@@ -117,7 +117,7 @@ public class ImageComparisonTest {
 		imageComp(sourceFilePath, targetFilePath,"samsungDiff");
 	}
 	
-	@Test
+	@Test(priority=5)
 	public void sameImage() throws IOException, InterruptedException {
 		// Code added to check compatibility with Selenium
 		String sourceFilePath = "resources/screenshots/v1/Source-Samsung.png";

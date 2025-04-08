@@ -21,7 +21,7 @@ The utility code is easy to integrate with any Java based projects like selenium
 *   Run the utility to compare two images
 *   A new image is generated with highlighted visual differences
 
-I have explored 3 different libraries which can be used to compare images.
+I have explored **3 different libraries** which can be used to compare images:
 
 *   **Basic pixel to pixel comparison using Java inbuilt library**  
     Pro: No additional jar downloads or utility required  
@@ -60,7 +60,7 @@ public static boolean compareImages(File fileA, File fileB) throws IOException {
         <!--<dependency>
             <groupId>io.github.bernardomg</groupId>
             <artifactId>ashot</artifactId>
-            <version>1.7.0</version>  This version supports Selenium 4 
+            <version>1.7.0</version>  
         </dependency>-->
         <!--<dependency>
             <groupId>ru.yandex.qatools.ashot</groupId>
@@ -83,6 +83,25 @@ public static boolean compareImages(File fileA, File fileB) throws IOException {
         </dependency>
 ```
 
+```java
+    public static void imageComp(String sourceFile, String targetFile, String fileName) {
+        // load images to be compared:
+                BufferedImage expectedImage = ImageComparisonUtil
+                        .readImageFromResources(sourceFile);
+                BufferedImage actualImage = ImageComparisonUtil
+                        .readImageFromResources(targetFile);
+
+                // Create ImageComparison object with result destination and compare the images.
+                ImageComparisonResult imageComparisonResult = new ImageComparison(expectedImage, actualImage).compareImages();
+
+                File resultDestination = new File(fileName+".png");
+                // Image can be saved after comparison, using ImageComparisonUtil.
+                ImageComparisonUtil.saveImage(resultDestination, imageComparisonResult.getResult());
+                // Check the result
+                assertEquals(ImageComparisonState.MATCH, imageComparisonResult.getImageComparisonState(), "Mismatch");
+    }
+```
+
 `For more usage details, refer to "src/comparison/ImageComparisonTest.java"`
 
 ## ⚙️ Pre-requisites
@@ -94,16 +113,19 @@ Make sure you have the following installed before using the utility:
 
 ## 🛠️ Usage
 
-\`\`\`  
-Right click on ImageComparisonTest > run as TestNG class  
+Right click on ImageComparisonTest > run as TestNG Test  
 I have included multiple test scenarios to check behavior of this utility and to validate its output.
-
-\`\`\`
 
 ## 🧪 Example Output of Image-Comparison library
 
-![Comparing 2 different Pages](https://github.com/PriyankaPoojari/java-imageComparator-selenium-appium/blob/master/DifferentPage.png)
+Comparing 2 different Pages: assertion fails and highlights difference  
+![](https://github.com/PriyankaPoojari/java-imageComparator-selenium-appium/blob/master/DifferentPage.png)
 
-Diff image:
+Comparing 2 same Page with Different data: assertion fails and highlights difference  
+![](https://github.com/PriyankaPoojari/java-imageComparator-selenium-appium/blob/master/samePageDiffData.png)
 
-![](https://github.com/PriyankaPoojari/nodejs-ImageComparator/blob/master/diff-resemble.png)
+Comparing 2 different dimensions: assertion fails and saves target image  
+![](https://github.com/PriyankaPoojari/java-imageComparator-selenium-appium/blob/master/samsungDiff.png)
+
+Comparing 2 same Pages: assertion passes as match and saves target image  
+![](https://github.com/PriyankaPoojari/java-imageComparator-selenium-appium/blob/master/sameImg.png)
